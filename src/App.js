@@ -14,22 +14,26 @@ function App() {
     },
   });
 
+  function onSubmit() {
+    // console.log(data);
+    if (!errors.email.message && !errors.password.message) {
+      console.log('Success');
+    }
+  }
+
   console.log(watch());
 
   return (
     <div className='wrapper'>
       <h1>Sign In</h1>
-      <form
-        className='form'
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
-      >
+      <form className='form' onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register('email', {
             required: 'This is required.',
-            pattern: /\S+@\S+\.\S+/,
-            message: 'Entered value does not match email format',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: 'Please enter a valid email.',
+            },
           })}
           placeholder='Email'
         />
