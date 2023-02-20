@@ -14,43 +14,49 @@ function App() {
     },
   });
 
-  function onSubmit() {
-    // console.log(data);
-    if (!errors.email.message && !errors.password.message) {
-      console.log('Success');
-    }
+  function onSubmit(data) {
+    register(data.email(''));
   }
 
   console.log(watch());
 
   return (
     <div className='wrapper'>
-      <h1>Sign In</h1>
+      <h1>React Hook Form</h1>
+
       <form className='form' onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register('email', {
-            required: 'This is required.',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: 'Please enter a valid email.',
-            },
-          })}
-          placeholder='Email'
-        />
-        <p>{errors.email?.message}</p>
-        <input
-          {...register('password', {
-            required: 'This is required.',
-            minLength: {
-              value: 4,
-              message: 'Password must be 5 characters or more.',
-            },
-          })}
-          placeholder='Password'
-        />
-        <p>{errors.password?.message}</p>
+        <div className='inputs'>
+          <label>
+            <p>Email: </p>
+            <input
+              {...register('email', {
+                required: 'This is required.',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: 'Please enter a valid email.',
+                },
+              })}
+              placeholder='Email'
+            />
+          </label>
+          <p className='message'>{errors.email?.message}</p>
+          <label>
+            <p>Password: </p>
+            <input
+              {...register('password', {
+                required: 'This is required.',
+                minLength: {
+                  value: 4,
+                  message: 'Password must be 5 characters or more.',
+                },
+              })}
+              placeholder='Password'
+            />
+          </label>
+          <p className='message'>{errors.password?.message}</p>
+        </div>
         <div className='button'>
-          <input className='' type='submit' />
+          <button type='submit'>Sign In</button>
         </div>
       </form>
     </div>

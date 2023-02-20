@@ -86,6 +86,7 @@ input[type='password']:focus {
   background: #fffaf0;
   /* background: #ff7f50; */
   width: 350px;
+  height: auto;
   border-radius: 3%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -94,12 +95,14 @@ input[type='password']:focus {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 10px;
 }
 
 .message {
   margin: 10px;
+  font-size: 12px;
+  color: red;
 }
 
 .errorMessage {
