@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+    formState,
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     defaultValues: {
       email: '',
@@ -14,8 +17,24 @@ function App() {
     },
   });
 
+  // const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({
+        email: '',
+        password: '',
+      });
+    }
+  }, [formState, reset]);
+
   function onSubmit(data) {
-    register(data.email(''));
+    // register(data.email(''));
+    console.log(data);
+    // if(formState.isSubmitSuccessful)
+    // if (errors.email?.message === '') {
+    //   setSuccessMessage('Sign in successful!');
+    // }
   }
 
   console.log(watch());
