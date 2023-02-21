@@ -9,7 +9,7 @@ body {
   margin: 20px;
   padding: 0;
 
-  background: linear-gradient(to right, #ff7f50, #ffd700);
+  background: linear-gradient(to right, #fff0f5, #40e0d0);
 }
 
 h1 {
@@ -82,9 +82,9 @@ input[type='password']:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #ff7f50, #ffd700);
+
   background: #fffaf0;
-  /* background: #ff7f50; */
+
   width: 350px;
   height: auto;
   border-radius: 3%;
