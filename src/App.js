@@ -17,7 +17,7 @@ function App() {
     },
   });
 
-  // const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
@@ -25,19 +25,16 @@ function App() {
         email: '',
         password: '',
       });
+      setSuccessMessage('Sign In Successful!');
     }
   }, [formState, reset]);
 
   function onSubmit(data) {
-    // register(data.email(''));
     console.log(data);
-    // if(formState.isSubmitSuccessful)
-    // if (errors.email?.message === '') {
-    //   setSuccessMessage('Sign in successful!');
-    // }
+    console.log(watch());
   }
 
-  console.log(watch());
+  // console.log(watch());
 
   return (
     <div className='wrapper'>
@@ -58,26 +55,29 @@ function App() {
               placeholder='Email'
             />
           </label>
-          <p className='message'>{errors.email?.message}</p>
+          <p className='errorMessage'>{errors.email?.message}</p>
           <label>
             <p>Password: </p>
             <input
               {...register('password', {
                 required: 'This is required.',
                 minLength: {
-                  value: 4,
+                  value: 5,
                   message: 'Password must be 5 characters or more.',
                 },
               })}
               placeholder='Password'
             />
           </label>
-          <p className='message'>{errors.password?.message}</p>
+          <p className='errorMessage'>{errors.password?.message}</p>
         </div>
         <div className='button'>
           <button type='submit'>Sign In</button>
         </div>
       </form>
+      <div className='message'>
+        <p>{successMessage}</p>
+      </div>
     </div>
   );
 }
