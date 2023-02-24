@@ -8,7 +8,6 @@ function App() {
     handleSubmit,
     watch,
     reset,
-    formState,
     formState: { errors, isSubmitSuccessful },
   } = useForm({
     defaultValues: {
@@ -20,21 +19,18 @@ function App() {
   const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
-    if (formState.isSubmitSuccessful) {
+    if (isSubmitSuccessful) {
       reset({
         email: '',
         password: '',
       });
       setSuccessMessage('Sign In Successful!');
     }
-  }, [formState, reset]);
+  }, [isSubmitSuccessful, reset]);
 
   function onSubmit(data) {
     console.log(data);
-    console.log(watch());
   }
-
-  // console.log(watch());
 
   return (
     <div className='wrapper'>
@@ -55,7 +51,10 @@ function App() {
               placeholder='Email'
             />
           </label>
-          <p className='errorMessage'>{errors.email?.message}</p>
+          {errors.email && (
+            <p className='errorMessage'>{errors.email.message}</p>
+          )}
+
           <label>
             <p>Password: </p>
             <input
@@ -69,7 +68,9 @@ function App() {
               placeholder='Password'
             />
           </label>
-          <p className='errorMessage'>{errors.password?.message}</p>
+          {errors.password && (
+            <p className='errorMessage'>{errors.password.message}</p>
+          )}
         </div>
         <div className='button'>
           <button type='submit'>Sign In</button>
